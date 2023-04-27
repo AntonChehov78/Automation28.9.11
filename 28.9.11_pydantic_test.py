@@ -3,7 +3,6 @@ import pytest
 import requests
 
 
-
 class AccessTokenRequest(BaseModel):
     access_token: str
 
@@ -16,15 +15,15 @@ class User(BaseModel):
 
 def test_access_token_required():
     request = {
-        "access_token": "test1_token"
+        "access_token": "token123"
     }
     AccessTokenRequest(**request)
 
 
 def test_users_get_response():
     response = [
-        {"id": 153215, "first_name": "Sid", "last_name": "Vicious"},
-        {"id": 484151, "first_name": "Nancy", "last_name": "Spungen"}
+        {"id": 123, "first_name": "Sid", "last_name": "Vicious"},
+        {"id": 456, "first_name": "Nancy", "last_name": "Spungen"}
     ]
     users = [User(**user) for user in response]
 
@@ -45,12 +44,12 @@ def test_access_token_format():
 
 def test_users_get_success():
     response = [
-        {"id": 153215, "first_name": "Sid", "last_name": "Vicious"},
-        {"id": 484151, "first_name": "Nancy", "last_name": "Spungen"}
+        {"id": 123, "first_name": "Sid", "last_name": "Vicious"},
+        {"id": 456, "first_name": "Nancy", "last_name": "Spungen"}
     ]
     users = [User(**user) for user in response]
     assert len(users) == 2
-    assert users[0].id == 153215
+    assert users[0].id == 123
     assert users[0].first_name == "Sid"
     assert users[0].last_name == "Vicious"
 
@@ -73,7 +72,7 @@ def test_user_format():
 
 def test_user_name_format():
     user = {
-        "id": 153215,
+        "id": 123,
         "first_name": "Nick",
         "last_name": "Vicious"
     }
@@ -83,7 +82,7 @@ def test_user_name_format():
 
 def test_user_lastname_format():
     user = {
-        "id": 141414,
+        "id": 123,
         "first_name": "Serj",
         "last_name": "Tankian"
     }
@@ -92,10 +91,10 @@ def test_user_lastname_format():
 
 
 def test_users_get_one_user():
-    response = [{"id": 153215, "first_name": "Sid", "last_name": "Vicious"}]
+    response = [{"id": 123, "first_name": "Sid", "last_name": "Vicious"}]
     users = [User(**user) for user in response]
     assert len(users) == 1
-    assert users[0].id == 153215
+    assert users[0].id == 123
     assert users[0].first_name == "Sid"
     assert users[0].last_name == "Vicious"
 
